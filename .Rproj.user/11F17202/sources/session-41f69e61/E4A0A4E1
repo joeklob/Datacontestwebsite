@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/datacontestwebsite/Datacontestwebsite/index.rmd",
     "project_path": "index.rmd",
     "type": "r_markdown",
-    "hash": "3753930098",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1705888889564.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "15,0",
-        "scrollLine": "5",
+        "cursorPosition": "7,0",
+        "scrollLine": "0",
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
@@ -21,11 +21,11 @@
         "rmdVisualModeLocation": "2:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1705889787,
+    "lastKnownWriteTime": 1660428357,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1705889787958,
+    "last_content_update": 1660428357,
     "read_only": false,
     "read_only_alternatives": []
 }

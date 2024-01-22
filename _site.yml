@@ -6,13 +6,13 @@ navbar:
       href: index.html
     - text: "Sections"
       menu:
-      - text: "FAQ"
+      - text: "Intro to R"
         href: newlab2.html
-      - text: "Sample Questions"
+      - text: "Commands and functions"
         href: newlab3.html
-      - text: "Sample Solutions"
+      - text: "Data massaging: basics"
         href: newlab4.html
-      - text: "How to use R"
+      - text: "Intro to programming"
         href: newlab5.html
       - text: "ggplot2"
         href: newlab6.html
