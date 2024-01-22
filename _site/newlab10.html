@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Random variables</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Science Notes</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sections
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="newlab2.html">Intro to R</a>
+    </li>
+    <li>
+      <a href="newlab3.html">Commands and functions</a>
+    </li>
+    <li>
+      <a href="newlab4.html">Data massaging: basics</a>
+    </li>
+    <li>
+      <a href="newlab5.html">Intro to programming</a>
+    </li>
+    <li>
+      <a href="newlab6.html">ggplot2</a>
+    </li>
+    <li>
+      <a href="newlab7.html">Data transformations I</a>
+    </li>
+    <li>
+      <a href="newlab8.html">Data transformations II</a>
+    </li>
+    <li>
+      <a href="newlab9.html">Data cleaning</a>
+    </li>
+    <li>
+      <a href="newlab10.html">Random variables</a>
+    </li>
+    <li>
+      <a href="newlab11.html">Discrete and continous random variables</a>
+    </li>
+    <li>
+      <a href="newlab12.html">Mean and variance</a>
+    </li>
+    <li>
+      <a href="newlab14.html">Confidence Intervals</a>
+    </li>
+    <li>
+      <a href="newlab15.html">Hypothesis Testing</a>
+    </li>
+    <li>
+      <a href="newlab16.html">Regression</a>
+    </li>
+    <li>
+      <a href="newlab18.html">Machine learning</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Random variables</h1>
+
+</div>
+
+
+<p>For the next few sections, we’ll be concerned with datasets of a
+single variable. It will be necessary that we learn some basic stuff
+from <strong>probability</strong> and <strong>statistics</strong>. This
+is be introductory, and some explanations will be <em>very</em>
+hand-wavy. In particular, while we’ll dip our toes into some probability
+notation, and perform a few calculations, we will mostly verify all of
+our claims through sampling with R. Of course, this is no substitute for
+the real thing, so we strongly recommend is taking a probability (and a
+statistics) course in the future. Hopefully the next few sections will
+serve as a motivation for what probability and statistics looks like
+thorugh a sampling perspective.</p>
+<p>In probability, a major object is the <strong>random
+variable</strong>. There’s a precise way to define this, but for now, we
+just imagine that a random variable <span
+class="math inline">\(X\)</span> is just some random quantity. For
+instance, <span class="math inline">\(X\)</span> could be the result of
+a coin flip, or the number of points the Scranton lacrosse team scores,
+or the number of Coronavirus cases in a particular day.</p>
+<p>Of course, one may object that none of these quantities are actually
+random. Theoretically, with enough information, we ought to be able to
+compute all of these things with pure certainty. Well, even that is a
+contentious point, and if we were allow ourselves down the philosophical
+rabbit hole, we’d find ourselves arguing about determinism and free will
+and a whole host of deep questions. One quick way out of this is to say
+that probability is the mathematics based on having partial information.
+Sure, perhaps we can get into the brains of every lacrosse player and
+figure out exactly what’s going to happen in a game. But given some
+basic facts (previous record of games, age of players, weather
+conditions, etc.), what’s the best guess we can make? Our limited
+information is a dataset.</p>
+<p>Let’s focus on a random variable <span
+class="math inline">\(X\)</span> (usually random variables are denoted
+by capital letters) which spit out real numbers. Some useful things to
+ask about <span class="math inline">\(X\)</span> are</p>
+<ol style="list-style-type: decimal">
+<li>What’s an average value for what <span
+class="math inline">\(X\)</span> should return?</li>
+<li>How frequently, or what is the probability, that <span
+class="math inline">\(X\)</span> is less than some number <span
+class="math inline">\(b\)</span>, or greater than some number <span
+class="math inline">\(a\)</span>?</li>
+<li>How ``Spread out” is <span class="math inline">\(X\)</span>. Does
+<span class="math inline">\(X\)</span> return numbers which are very
+close to each other, or do I get a wide variety of results?</li>
+</ol>
+<p>We’ll answer each of these questions through the notion of
+<strong>distributions</strong>. We’ll be using <strong>synthetic
+data</strong> for a bit, which is generated through a random number
+generator from R.</p>
+<div id="discrete-distributions" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Discrete
+distributions</h1>
+<p>In this exercise, we are going to generate a random variable <span
+class="math inline">\(X\)</span> which has the possible values <span
+class="math inline">\(S = \{4,5,7,9\}\)</span> (the set <span
+class="math inline">\(S\)</span> of possible values for <span
+class="math inline">\(X\)</span> is called a <strong>state
+space</strong>. The random variable <span
+class="math inline">\(X\)</span> is a <strong>discrete random
+variable</strong>, meaning that it can takes only finitely many values
+(well, it could technically be <em>countably infinite</em>, but let’s
+not worry about that for now). For discrete random variables, we can
+describe <span class="math inline">\(X\)</span> by the probability that
+it takes for each value, denoted by the `blackboard script’ <span
+class="math inline">\(\mathbb P\)</span>. Let’s say the probabilities
+for values of <span class="math inline">\(X\)</span> are given by</p>
+<p><span class="math display">\[\begin{equation}
+\mathbb P(X = 4) = .3, \quad \mathbb P(X = 5) = .5, \quad \mathbb P(X =
+7)
+= .1, \quad \mathbb P(X = 9) = .1,
+\end{equation}\]</span></p>
+<p>Here is a function using <TT>sample</TT> that will generate <span
+class="math inline">\(n\)</span> random instances of <span
+class="math inline">\(X\)</span>:</p>
+<pre class="r"><code>samplex = function(n){
+  
+  sample(x = c(4,5,7,9), n, replace = T, prob = c(.3,.5,.1,.1))
+  
+}
+
+samps = samplex(100)
+
+samps</code></pre>
+<pre><code>##   [1] 5 9 5 5 5 4 7 9 4 7 4 5 4 7 4 5 5 5 4 5 5 7 7 5 4 9 4 5 5 4 5 5 5 4 4 7 5
+##  [38] 4 7 5 4 5 5 5 5 9 4 7 5 5 4 5 5 5 5 5 7 4 9 4 4 5 4 5 4 5 4 5 5 5 5 5 4 5
+##  [75] 7 5 4 4 4 4 5 4 4 9 5 5 9 4 4 9 9 9 4 5 7 5 5 5 5 7</code></pre>
+<blockquote>
+<p><strong>Q:</strong> What do you think each part of the code does?</p>
+</blockquote>
+<p>Let’s convert our numeric vector <TT>samps</TT> into a dataframe.</p>
+<pre class="r"><code>samps = data.frame(samps)
+
+str(samps)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  1 variable:
+##  $ samps: num  5 9 5 5 5 4 7 9 4 7 ...</code></pre>
+<p>We’ll give the column a name of “Trial”, since we performed 100
+trials of <span class="math inline">\(X\)</span>.</p>
+<pre class="r"><code>colnames(samps) = &quot;Trial&quot;
+head(samps)</code></pre>
+<pre><code>##   Trial
+## 1     5
+## 2     9
+## 3     5
+## 4     5
+## 5     5
+## 6     4</code></pre>
+<p>Now we can make some basic visuals with <TT>ggplot2</TT>. Let’s take
+a look at a histogram:</p>
+<pre class="r"><code>samps %&gt;% ggplot()+geom_bar(aes(x = Trial, y = ..count../sum(..count..))) +
+  labs(x = &#39;Value&#39;, y = &#39;Proportion&#39;)</code></pre>
+<p><img src="newlab10_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Note that the fractions that each of the possible values in <span
+class="math inline">\(S\)</span> takes is pretty close to the
+probabilities assigned from before. This illustrates an important theme:
+as the number of samples increases, these fractions will converge to the
+assigned probabilities. Such a phenomenon is called the <strong>law of
+large numbers</strong>, and we’ll talk about this in more detail
+soon.</p>
+<p>Let’s ramp up the number of samples and see what happens</p>
+<pre class="r"><code>samps =  samplex(1000000)
+
+samps = data.frame(samps)
+
+colnames(samps) = &quot;Trial&quot;
+
+samps %&gt;% ggplot()+geom_bar(aes(x = Trial
+                                , y = stat(prop)))</code></pre>
+<p><img src="newlab10_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>sum(samps == 4)/dim(samps)[1]</code></pre>
+<pre><code>## [1] 0.300657</code></pre>
+<pre class="r"><code>sum(samps == 5)/dim(samps)[1]</code></pre>
+<pre><code>## [1] 0.498838</code></pre>
+<pre class="r"><code>sum(samps == 7)/dim(samps)[1]</code></pre>
+<pre><code>## [1] 0.100233</code></pre>
+<pre class="r"><code>sum(samps == 9)/dim(samps)[1]</code></pre>
+<pre><code>## [1] 0.100272</code></pre>
+<p>Now our fractions are much closer to the actual probabilities.
+Something about this process is a bit artificial, however. In the real
+world, of course, we don’t have the luxury of generating infinite
+amounts of data to find out the value of a probability. This is where
+statistics comes into play. If we have only finitely many datapoints,
+then we need to make a best guess about what probability. We may also
+want some type of statement about how good our guess is, as well. This
+will be covered with the concept of <strong>confidence
+intervals</strong>. Much more on this later.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

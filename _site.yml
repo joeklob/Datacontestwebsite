@@ -1,0 +1,52 @@
+name: "Data Science Notes"
+navbar:
+  title: "Data Science Notes"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Sections"
+      menu:
+      - text: "FAQ"
+        href: newlab2.html
+      - text: "Sample Questions"
+        href: newlab3.html
+      - text: "Sample Solutions"
+        href: newlab4.html
+      - text: "How to use R"
+        href: newlab5.html
+      - text: "ggplot2"
+        href: newlab6.html
+      - text: "Data transformations I"
+        href: newlab7.html
+      - text: "Data transformations II"
+        href: newlab8.html
+      - text: "Data cleaning"
+        href: newlab9.html
+      - text: "Random variables"
+        href: newlab10.html
+      - text: "Discrete and continous random variables"
+        href: newlab11.html
+      - text: "Mean and variance"
+        href: newlab12.html
+      - text: "Confidence Intervals"
+        href: newlab14.html
+      - text: "Hypothesis Testing"
+        href: newlab15.html
+      - text: "Regression"
+        href: newlab16.html
+      - text: "Machine learning"
+        href: newlab18.html
+      
+output: 
+  html_document:
+    toc: true
+    number_sections: true
+    toc_float: true
+    theme: flatly
+
+
+    
+    
+    
+    
+    
