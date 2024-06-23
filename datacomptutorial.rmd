@@ -1,22 +1,37 @@
 ---
-title: "Introduction to using R: basic commands and functions"
+title: "Using R on datasets"
 ---
 
 
-# Introduction
+# What is R?
+  
+  R is a powerful programming language used in science, medicine, industry, 
+  
+  For now, I would like for you to download R (the programming language) and RStudio (the IDE, what you'll be plugging your code into).  Instructions and links to download R and RStudio are given [here](https://r4ds.had.co.nz/introduction.html#prerequisites). As mentioned in the instructions, make sure you download R before RStudio.  
+  
+Thankfully, there are plenty of free resources for figuring out the basics of R.  
+
+1. Free online textbooks. One of the most popular is [R for Data Science](https://r4ds.hadley.nz/data-transform)  by Grolemund and Wickham.  This gives an introduction to transforming datasets and visualizing data.
+
+2. A version of the notes used in The University of Scranton's "Introduction to Data Science" class can be found [here](https://scrantondatanotes.netlify.app/)
+
+3. Like any other established programming language, R has _documentation_. The main page for R's documentation is [here](https://www.rdocumentation.org/), but typically a google search will direct you to the right place.  For instance, testing out "r sort" has as its first hit the documentation for sorting a list.
+
+4. Thousands of frustrated programmers have contributed to sites like Stack Exchange, where users post questions and answers to all sorts of problems.  While documentation can be seen as more "official", you might find that your questions are more commonly answered on Stack Exchange. 
 
 
-In this section, we will introduce some well known built-in functions.  Like any other developed programming language, the R lexicon contains thousands of words which denote various functions.  We'll cover a select few in what follows, but it would be overbearing and unproductive to try providing an exhaustive list. Finding the correct function when programming will often involve reading _R documentation_ or a trip to _Stack Exchange_.  Certainly, you've spent years of training on search engines looking for all sorts of things.  This skill (and it is, indeed, a skill) will come in handy for when you would like to find the correct function for a task.
+Below, we'll go through a worked example of a data science problem, and how to tackle it from start to finish.
+   
 
-By documentation, we mean that R, along with all other popular programming languages, has written explanations for how their commands actually work.  In R, documentation is available online at the [Comprehensive R Archive Network](https://cran.r-project.org) (CRAN).  A common first place to look is [Stack Exchange](https://stackexchange.com/).  Here, fellow frustrated programmers post questions concerning all types of languages.  Often, it makes sense to include your language in whatever type of query you plug into a search engine (e.g. search for "how to sort a list R" rather than "how to sort a list").
 
-A convention for these notes will be the posting of questions marked with a __Q:__. Sometimes these questions will be answered, and other times you'll be left to figure things out on your own.
 
-> __Q:__ Suppose you want to multiply two numbers on R.  By any means necessary, find the correct symbol. 
 
-The answer here is pretty simple: multiplication is denoted by the "*" symbol.  Here, and in many times in the future, we are going to show code (presented in gray blocks), along with the output of code given in <TT>typewriter font</TT>.  Text in typewriter font is essentially communicating that was is being written can be directly copied to a programming language (sometimes urls are also written in typewriter font). 
+> __Q:__ How do I download a dataset?
 
-Let's give an example. To demonstrate multiplication in R, we may write, for example
+R has a host of built in datasets that are fun to tinker around with.  For instance, by typing <TT>iris</TT> into the console, you'll find the famous iris dataset which gives sepal and petal dimensions of iris flowers.
+
+
+
 
 ```{r}
 #Comment for R code.  Comments give explanations 
