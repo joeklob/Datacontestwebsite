@@ -1,0 +1,264 @@
+---
+title: "R fundamentals"
+---
+
+This page gives a lightning quick overview of how R works.  
+
+# Help!
+
+A fundamental part of  coding is getting stuck. Thankfully, there are plenty of free resources for figuring out the basics of R.  
+
+1. Free online textbooks. One of the most popular is [R for Data Science](https://r4ds.hadley.nz/)  by Grolemund and Wickham.  This gives an introduction to transforming datasets and visualizing data.
+
+2. A version of the notes used in The University of Scranton's DS 201 "Introduction to Data Science" class can be found [here](https://scrantondatanotes.netlify.app/).
+
+3. Like any other established programming language, R has _documentation_. The main page for R's documentation is [here](https://www.rdocumentation.org/), but typically a google search will direct you to the right place.  For instance, testing out "r sort" has as its first hit the documentation for sorting a list.
+
+4. Thousands of frustrated programmers have contributed to sites like Stack Exchange, where users post questions and answers to all sorts of problems.  While documentation can be seen as more "official", you might find that your questions are more often answered on Stack Exchange and other programming-centered forums. 
+
+
+As an undergrad, you can (...and should!) devote years to learning the intricacies of languages like R.  After you figure out the basics, you can start digging into the really interesting stuff, like modeling, image processing, machine learning, and other relevant topics in STEM.  For now though, let's go through the basics:
+
+## R is a calculator
+
+Saying that R is a calculator is like saying a flamethrower is a mosquito repellent.  However, at its core, R performs basic arithmetic. The operators for addition, subtraction, multiplication, and division are given by 
+
+
+1) $+$ for addition, so __1+1 = 2__.
+2)  $-$ for subtraction,  so __1-1 = 0__.
+3) $*$ for multiplication, so __2*3 = 6__.
+4)  $*$ for division, so __6/2 = 3__.
+5)  $\hat{}$ for exponentiation, so __2^3 = 8__.
+
+
+The PEMDAS order of operations applies, although if you're in doubt, adding additional parentheses is the way to go.
+
+> __Q:__ Twitter sometimes generates controversy (actually, when does it _not_?) by asking people to evaluate 6/2*(1+2).  What does R give?  What different responses do you think are often provided?  By using parentheses, how should the expression be written to remove any ambiguity?  Also, what happens when you type in 6/2(1+2)?
+
+Typing into the console at the bottom of your screen, the response from R is:
+```{r}
+
+6/2*(1+2)
+```
+
+We can expect that some people are thinking that the expression should be evaluated as
+
+```{r}
+
+(6/2)*(1+2)
+```
+
+There's likely other people who believe that the expression should instead be
+
+```{r}
+
+6/(2*(1+2))
+```
+
+The important point here is that parentheses clear any ambiguity regarding PEMDAS.  When in doubt, err on the side of more clarity.
+
+
+R also can handle vectors, which are simply lists of numbers.  To work with the vector $(2,3,5)$, for instance, let's define $V$ as
+
+```{r}
+V = c(2,3,5)
+```
+
+It appears as if nothing has happened, but in fact we have stored a new variable $V$ which can be called on at any time.  Simply type into the console
+
+```{r}
+V
+```
+
+Now we're at the point where we might want to run several lines of code at once.  This can be done through opening up an _R script_.  To do so at the top left of your RStudio screen, click on File--> New File --> R Script.  Doing so will give you a pane at the top of the screen.  In the pane, type in the following, highlight both lines, and click "Run" at the top of the pane:
+
+```{r}
+W = c(4,3,9)
+print(W)
+```
+Note that the first line defines a new variable $W$, and the second line prints out the value of the variable.  Now that you've defined $V$ and $W$, we can perform operations with the two variables.  Tinker around and see what happens when you perform the following
+
+- $V + W$
+- $V*W$
+- $2*V - 3*W$
+
+For the first expression, we have
+
+```{r}
+V + W
+```
+So R is adding the first element of V to the first element of W, the second element of V to the second element of W, and so on.
+
+When you have a list of numbers, you can also sort them
+
+```{r}
+sort(V)
+```
+If you need to go from largest to smallest, you can use the "decreasing" argument:
+
+```{r}
+sort(W, decreasing = TRUE)
+```
+
+
+
+
+## R makes handling datasets easy
+
+R is used heavily by the statistics community because of its with in handling datasets.  To see this, let's work with a built in dataset provided by R.  Type in
+
+```{r}
+mtcars
+```
+
+Here you get a list of car names and their corresponding performance features. You can see the first few lines of the dataset by typing in 
+
+```{r}
+head(mtcars)
+```
+
+The beauty of R is that you can perform common calculations on this dataset with ease.
+
+First off, if we want to isolate a single variable, we use the _accessor_ symbol "\$" (...yes, it's just a dollar sign).  So, for instance, if we want a listing of mpg's for cars, we type
+
+```{r}
+mtcars$mpg
+```
+This gives a vector with entries of mpg for each car.  From here, we're off to the races (especially with this dataset), since we can figure out a host of statistics.  We might want to find the maximum and minimum mpg.  This can be done with
+
+```{r}
+max(mtcars$mpg)
+min(mtcars$mpg)
+```
+We can do the same with other quantities:
+
+```{r}
+#mean (or average)
+mean(mtcars$mpg)
+
+#standard deviation (a measure of spread)
+sd(mtcars$mpg)
+
+#median (half the entries above this value, half below)
+median(mtcars$mpg)
+
+#range (maximum value minus minimum value)
+range(mtcars$mpg)
+
+```
+Note the hashtags appearing before the computations.  This is called __commenting__.  Comments are not read by R, but are used for guides to remind yourself what the code is doing.  In R, all comments must begin with a "#" symbol.
+
+
+Sometimes we will need to define new variables which are combinations of existing variables.  For instance, one might be interested in creating a new variable called __horsepower efficiency__ (Note: the author is a mathematician, not an auto mechanic.  I have no clue if this is a real thing...), which we will define by miles per gallon divided by horsepower, or
+
+$$ \hbox{ HPE} = \mathrm{MPG}/\mathrm{HP}.$$
+Here $MPG$ is the miles per gallon of a car, and $HP$ is its horsepower. In R, we can calculate the HPE by 
+
+```{r}
+
+hpeffic = mtcars$mpg/mtcars$hp 
+```
+
+Now we can start answering questions about HPE
+
+> __Q:__ Which cars have HPE greater than .1? 
+
+This is done by using the <TT>which</TT> function.  This gives indices of a list which satisfy a certain condition.
+
+```{r}
+
+ind = which(hpeffic > .1)
+
+rownames(mtcars)[ind]
+```
+
+> __Q:__ Which car(s) have the smallest HPE? What is this smallest value?
+
+```{r}
+
+rownames(mtcars)[which.min(hpeffic)]
+
+min(hpeffic)
+
+```
+
+
+
+## R has (many) plotting capabilities
+
+R has built in features for producing to make nice looking visuals.  Let's take a look at a __scatterplot__ which plots two features on a plane.  We'll do a scatter plot comparing mpg and horsepower.
+
+```{r}
+x = mtcars$mpg
+
+y = mtcars$hp
+
+plot(x,y, xlab = 'Miles per gallon', ylab = 'Horsepower')
+
+
+```
+
+> __Q:__ What happens if we don't include the text <TT>xlab</TT> and <TT>ylab</TT> in the arguments for <TT>plot</TT>?
+
+These arguments are not necessary, but they are nice to include if you'd like to make it clear to either yourself or someone else reading your code what your variables are.
+
+
+Now let's do the another plot, comparing mpg with gears
+
+```{r}
+x = mtcars$mpg
+
+y = mtcars$gear
+
+plot(x,y, xlab = 'Miles per gallon', ylab = 'Gears')
+
+
+```
+
+
+The variable gears takes __discrete__ values (e.g. 2,3,4) whereas mpg is a __continuous__ variable, taking values like 13.5, 18.4, etc.  In a case like this, it's more informative to use a __box plot__.
+
+
+```{r}
+
+boxplot(mpg~gear, data = mtcars)
+```
+
+> __Q:__ What do each of the features of this box plot represent? (A quick google search can answer this)
+
+
+
+When you just want to look at a single continuous variable, use a __histogram__. This will __bin__ values within a particular range.  R does a pretty decent job deciding what the number of bins should be, most of the time, but sometimes you need to change the number of bins yourself.
+
+```{r}
+
+
+hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = "Histogram of horsepower efficiency")
+```
+
+Here's too many bins:
+
+```{r}
+
+
+hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = "Histogram of horsepower efficiency", breaks = 50)
+```
+
+And too few bins:
+
+
+```{r}
+
+
+hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = "Histogram of horsepower efficiency", breaks = 3)
+```
+
+
+
+

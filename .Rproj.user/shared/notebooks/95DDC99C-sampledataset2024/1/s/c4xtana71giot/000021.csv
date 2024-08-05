@@ -1,0 +1,6 @@
+"0",""
+"0","library('stringr')"
+"0",""
+"0","barplot(c(engunemp, sciunemp, manageunemp), "
+"0","        names.arg = c(""Engineering"", ""Science"", ""Management""),"
+"0","        ylab = ""Unemployment Rate"")"

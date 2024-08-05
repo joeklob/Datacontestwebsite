@@ -11,12 +11,12 @@
 
 
 
-<title>Data Science Notes</title>
+<title>Data Science Day at The University of Scranton</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -144,11 +141,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -177,8 +178,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -186,16 +187,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -225,69 +219,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -295,16 +226,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -317,66 +238,24 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Data Science Notes</a>
+      <a class="navbar-brand" href="index.html">Data Science Day at The University of Scranton</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Sections
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="newlab2.html">Intro to R</a>
-    </li>
-    <li>
-      <a href="newlab3.html">Commands and functions</a>
-    </li>
-    <li>
-      <a href="newlab4.html">Data massaging: basics</a>
-    </li>
-    <li>
-      <a href="newlab5.html">Intro to programming</a>
-    </li>
-    <li>
-      <a href="newlab6.html">ggplot2</a>
-    </li>
-    <li>
-      <a href="newlab7.html">Data transformations I</a>
-    </li>
-    <li>
-      <a href="newlab8.html">Data transformations II</a>
-    </li>
-    <li>
-      <a href="newlab9.html">Data cleaning</a>
-    </li>
-    <li>
-      <a href="newlab10.html">Random variables</a>
-    </li>
-    <li>
-      <a href="newlab11.html">Discrete and continous random variables</a>
-    </li>
-    <li>
-      <a href="newlab12.html">Mean and variance</a>
-    </li>
-    <li>
-      <a href="newlab14.html">Confidence Intervals</a>
-    </li>
-    <li>
-      <a href="newlab15.html">Hypothesis Testing</a>
-    </li>
-    <li>
-      <a href="newlab16.html">Regression</a>
-    </li>
-    <li>
-      <a href="newlab18.html">Machine learning</a>
-    </li>
-  </ul>
+<li>
+  <a href="datacomptutorial.html">2024 Schedule</a>
+</li>
+<li>
+  <a href="contestdetails.html">Contest Details</a>
+</li>
+<li>
+  <a href="rfundamentals.html">R fundamentals</a>
+</li>
+<li>
+  <a href="sampledataset2024.html">Sample dataset and questions</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -390,37 +269,38 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Data Science Notes</h1>
+<h1 class="title toc-ignore">Data Science Day at The University of
+Scranton</h1>
 
 </div>
 
 
-<p>Welcome to the main page for Data Science Notes! These notes were
-used as the main reading material for the class DS 201: Introduction to
-Data Science at the University of Scranton. You’ll find a variety of
-data science topics covered using the R programming language. The notes
-were written with the help of RStudio And RShiny.</p>
-<center>
-<p><img src="images/irisimage.png" /></p>
+<p><font size="4"></p>
+<p>Welcome to the homepage for The University of Scranton’s Data Science
+Day!</p>
+<p>This year’s schedule of events boasts:</p>
+<ul>
+<li>A minitutorial on image processing in R</li>
+<li>A guest speaker from the National Institute of Standards and
+Technology</li>
+<li>The inaugural Scranton Data Science Competition, with a Pairs
+Division for beginners and a Singles Division for the computationally
+ambitious</li>
+<li>Plenty of food, prizes, and data science swag for all who
+participate!</li>
+</ul>
+<p>If you are interested in participating in Data Science Day, please
+fill out [CITE] by [CITE].</p>
 </center>
-<p>The above image is used in classifying the famous iris dataset by
-plotting sepal lengths and widths as a scatterplot. Such a method works
-great for identifying setosas, but more advanced methods will be needed
-for successfully distinguishing between versicolors and virginicas (in
-particular, we’ll use k-nearest neighbors on a higher dimensional
-dataset). In these notes, you will gain methods for visualizing data,
-and also some methods for making meaningful statements about data. This
-requires a basic understanding of statistics and probability, which is
-also covered, with a bent toward “proof by simulation”.</p>
-<p>Text and figures are licensed under Creative Commons Attribution CC
-BY-NC 4.0. The figures that have been reused from other sources don’t
-fall under this license and can be recognized by a note in their
-caption: “Figure from …”.</p>
+<p>Funding for Data Science Day is provided through the National Science
+Foundation and The University of Scranton.</p>
+<center>
+<p><img src="images/scrantonseal.svg" style="width:20.0%" /> <img
+src="images/nsflogo.png" style="width:15.0%" /></p>
+<p></font></p>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -453,35 +333,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

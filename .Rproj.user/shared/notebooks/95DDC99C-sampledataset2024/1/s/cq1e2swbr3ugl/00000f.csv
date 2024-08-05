@@ -1,0 +1,7 @@
+"0","scrunch = college_all_ages$p75th- college_all_ages$p25th "
+"0","i = which.max(scrunch)"
+"0","college_all_ages$major[i]"
+"1","[1]"
+"1"," ""Petroleum Engineering"""
+"1","
+"

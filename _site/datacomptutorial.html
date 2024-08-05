@@ -11,12 +11,12 @@
 
 
 
-<title>Using R on datasets</title>
+<title>Schedule</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,69 +219,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -292,16 +226,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -314,66 +238,24 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Data Science Notes</a>
+      <a class="navbar-brand" href="index.html">Data Science Day at The University of Scranton</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Sections
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="newlab2.html">Intro to R</a>
-    </li>
-    <li>
-      <a href="newlab3.html">Commands and functions</a>
-    </li>
-    <li>
-      <a href="newlab4.html">Data massaging: basics</a>
-    </li>
-    <li>
-      <a href="newlab5.html">Intro to programming</a>
-    </li>
-    <li>
-      <a href="newlab6.html">ggplot2</a>
-    </li>
-    <li>
-      <a href="newlab7.html">Data transformations I</a>
-    </li>
-    <li>
-      <a href="newlab8.html">Data transformations II</a>
-    </li>
-    <li>
-      <a href="newlab9.html">Data cleaning</a>
-    </li>
-    <li>
-      <a href="newlab10.html">Random variables</a>
-    </li>
-    <li>
-      <a href="newlab11.html">Discrete and continous random variables</a>
-    </li>
-    <li>
-      <a href="newlab12.html">Mean and variance</a>
-    </li>
-    <li>
-      <a href="newlab14.html">Confidence Intervals</a>
-    </li>
-    <li>
-      <a href="newlab15.html">Hypothesis Testing</a>
-    </li>
-    <li>
-      <a href="newlab16.html">Regression</a>
-    </li>
-    <li>
-      <a href="newlab18.html">Machine learning</a>
-    </li>
-  </ul>
+<li>
+  <a href="datacomptutorial.html">2024 Schedule</a>
+</li>
+<li>
+  <a href="contestdetails.html">Contest Details</a>
+</li>
+<li>
+  <a href="rfundamentals.html">R fundamentals</a>
+</li>
+<li>
+  <a href="sampledataset2024.html">Sample dataset and questions</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -387,44 +269,51 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Using R on datasets</h1>
+<h1 class="title toc-ignore">Schedule</h1>
 
 </div>
 
 
-<div id="what-is-r" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> What is R?</h1>
-<p>R is a reading <em>R documentation</em> or a trip to <em>Stack
-Exchange</em>. Certainly, you’ve spent years of training on search
-engines looking for all sorts of things. This skill (and it is, indeed,
-a skill) will come in handy for when you would like to find the correct
-function for a task.</p>
-<p>By documentation, we mean that R, along with all other popular
-programming languages, has written explanations for how their commands
-actually work. In R, documentation is available online at the <a
-href="https://cran.r-project.org">Comprehensive R Archive Network</a>
-(CRAN). A common first place to look is <a
-href="https://stackexchange.com/">Stack Exchange</a>. Here, fellow
-frustrated programmers post questions concerning all types of languages.
-Often, it makes sense to include your language in whatever type of query
-you plug into a search engine (e.g. search for “how to sort a list R”
-rather than “how to sort a list”).</p>
-<p>A convention for these notes will be the posting of questions marked
-with a <strong>Q:</strong>. Sometimes these questions will be answered,
-and other times you’ll be left to figure things out on your own.</p>
+<ul>
+<li><p>Registration and light fare</p></li>
+<li><p>Introduction</p></li>
+<li><p>Minitutorial</p></li>
+<li><p>The 2024 Data Science Competition</p></li>
+<li><p>Lunch and keynote speaker</p></li>
+<li><p>Results and closing</p></li>
+</ul>
+<p>[MENTION CLOUD SOURCE TOO]</p>
+<p>Thankfully, there are plenty of free resources for figuring out the
+basics of R.</p>
+<ol style="list-style-type: decimal">
+<li><p>Free online textbooks. One of the most popular is <a
+href="https://r4ds.hadley.nz/data-transform">R for Data Science</a> by
+Grolemund and Wickham. This gives an introduction to transforming
+datasets and visualizing data.</p></li>
+<li><p>A version of the notes used in The University of Scranton’s
+“Introduction to Data Science” class can be found <a
+href="https://scrantondatanotes.netlify.app/">here</a></p></li>
+<li><p>Like any other established programming language, R has
+<em>documentation</em>. The main page for R’s documentation is <a
+href="https://www.rdocumentation.org/">here</a>, but typically a google
+search will direct you to the right place. For instance, testing out “r
+sort” has as its first hit the documentation for sorting a
+list.</p></li>
+<li><p>Thousands of frustrated programmers have contributed to sites
+like Stack Exchange, where users post questions and answers to all sorts
+of problems. While documentation can be seen as more “official”, you
+might find that your questions are more commonly answered on Stack
+Exchange.</p></li>
+</ol>
+<p>Below, we’ll go through a worked example of a data science problem,
+and how to tackle it from start to finish.</p>
 <blockquote>
-<p><strong>Q:</strong> Suppose you want to multiply two numbers on R. By
-any means necessary, find the correct symbol.</p>
+<p><strong>Q:</strong> How do I download a dataset?</p>
 </blockquote>
-<p>The answer here is pretty simple: multiplication is denoted by the
-“*” symbol. Here, and in many times in the future, we are going to show
-code (presented in gray blocks), along with the output of code given in
-<TT>typewriter font</TT>. Text in typewriter font is essentially
-communicating that was is being written can be directly copied to a
-programming language (sometimes urls are also written in typewriter
-font).</p>
-<p>Let’s give an example. To demonstrate multiplication in R, we may
-write, for example</p>
+<p>R has a host of built in datasets that are fun to tinker around with.
+For instance, by typing <TT>iris</TT> into the console, you’ll find the
+famous iris dataset which gives sepal and petal dimensions of iris
+flowers.</p>
 <pre class="r"><code>#Comment for R code.  Comments give explanations 
 #about what is going on with code, 
 #but are not actually used in compiling (running) a program.
@@ -436,7 +325,7 @@ write, for example</p>
 concept that we will run into quite often. To draw a single random
 number, we use</p>
 <pre class="r"><code>runif(1)</code></pre>
-<pre><code>## [1] 0.55178</code></pre>
+<pre><code>## [1] 0.2885764</code></pre>
 <blockquote>
 <p><strong>Q:</strong> If I ran again, should I expect to produce the
 same number again?</p>
@@ -459,8 +348,8 @@ actually has three arguments. The first gives you the number of random
 numbers to generate. The second and third give you a range of the lower
 and upper numbers from which you choose uniformly.</p>
 <pre class="r"><code>runif(10, 3, 5)</code></pre>
-<pre><code>##  [1] 3.954570 3.915123 3.612400 4.139417 3.816812 3.992914 3.423339 3.047703
-##  [9] 4.503053 4.046084</code></pre>
+<pre><code>##  [1] 4.702973 4.212631 3.054691 3.315213 4.494817 4.372200 4.344824 3.474695
+##  [9] 4.944119 4.997955</code></pre>
 <p>If you move your cursor over a function, it will give you arguments.
 Sometimes you can omit arguments, and R will just provide <TT>default
 values</TT>. What appear to be the default values of <TT>runif</TT>?</p>
@@ -469,10 +358,8 @@ values</TT>. What appear to be the default values of <TT>runif</TT>?</p>
 you tell whether an argument can be omitted, and what default value will
 be inserted for omitted arguments?</p>
 </blockquote>
-<div id="the-console-and-r-scripts." class="section level2"
-number="1.1">
-<h2><span class="header-section-number">1.1</span> The console and R
-scripts.</h2>
+<div id="the-console-and-r-scripts." class="section level2">
+<h2>The console and R scripts.</h2>
 <p>Suppose we’d like to compute the product 23845*92834. There are two
 ways to do this (well, three, I suppose, if you have a pen, paper, and
 some patience…). First, we can use the and simply type what we want.</p>
@@ -502,9 +389,8 @@ file as <TT>myfirstfile.r</TT>. Open the file to make sure all’s well,
 and run the script again.</p>
 </blockquote>
 </div>
-<div id="exploring-basic-functions" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Exploring basic
-functions</h2>
+<div id="exploring-basic-functions" class="section level2">
+<h2>Exploring basic functions</h2>
 <p>R can function as a scientific calculator. This is akin to saying
 that a nuclear bomb can function as a bug zapper. The operators for
 addition, subtraction, multiplication, and division are given by</p>
@@ -544,9 +430,8 @@ instead be</p>
 <p>The important point here is that parentheses clear any ambiguity
 regarding PEMDAS. When in doubt, err on the side of more clarity.</p>
 </div>
-<div id="variables-and-class-types" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Variables and class
-types</h2>
+<div id="variables-and-class-types" class="section level2">
+<h2>Variables and class types</h2>
 <p>If you want to save a value for later, we can use a
 <TT>variable</TT>. For instance, let</p>
 <pre class="r"><code>A = (6/2)*(1+2)</code></pre>
@@ -659,8 +544,8 @@ is “Yes”, or in terms of R, <TT>TRUE</TT> or simply <TT>1</TT>. This
 yes/no question didn’t actually reassign <TT>b</TT>, so when we run
 <TT>print(b)</TT>, it simply returns it initial value of -4.</p>
 </div>
-<div id="sorting" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Sorting</h2>
+<div id="sorting" class="section level2">
+<h2>Sorting</h2>
 <p>We can also apply functions to variables. Functions use parentheses
 to take in variables. <strong>Beware!</strong> It is a very, very common
 mistake to call on functions with brackets, or call a vector index with
@@ -687,10 +572,9 @@ sort(v, decreasing= TRUE)</code></pre>
 <p>What, then, is the default value of <TT>decreasing</TT> in
 <TT>sort</TT>?</p>
 </div>
-<div id="zero-infinity-and-everything-in-between" class="section level2"
-number="1.5">
-<h2><span class="header-section-number">1.5</span> Zero, infinity, and
-everything in between</h2>
+<div id="zero-infinity-and-everything-in-between"
+class="section level2">
+<h2>Zero, infinity, and everything in between</h2>
 <p>It’s important to remember that while computers often have the upper
 hand with calculating expressions, once in awhile they produce an answer
 that we humans can immediately identify as not exactly correctly. For
@@ -748,8 +632,8 @@ commands do?</p>
 <pre class="r"><code>Inf*Inf</code></pre>
 <pre><code>## [1] Inf</code></pre>
 </div>
-<div id="booleans" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Booleans</h2>
+<div id="booleans" class="section level2">
+<h2>Booleans</h2>
 <p>An operator which gives a value of <TT>TRUE</TT> or <TT>FALSE</TT> (1
 or 0) is called a <em>Boolean operator</em>. Here are Booleans for
 comparing two numbers.</p>
@@ -783,12 +667,9 @@ c &lt;= b</code></pre>
 c &gt;= a</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-</div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -821,35 +702,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

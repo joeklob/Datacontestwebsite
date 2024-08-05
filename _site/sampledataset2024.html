@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Sample dataset and questions: 538 College Data</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Science Day at The University of Scranton</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="datacomptutorial.html">2024 Schedule</a>
+</li>
+<li>
+  <a href="contestdetails.html">Contest Details</a>
+</li>
+<li>
+  <a href="rfundamentals.html">R fundamentals</a>
+</li>
+<li>
+  <a href="sampledataset2024.html">Sample dataset and questions</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Sample dataset and questions: 538 College
+Data</h1>
+
+</div>
+
+
+<div id="s-college_all_ages-dataset" class="section level1">
+<h1>538’s <em>college_all_ages</em> dataset</h1>
+<p>For this sample dataset, we will be using the
+<em>college_all_ages</em> dataset from the <em>fivethirtyeight</em>
+package. This was used for the article <a
+href="https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/">“The
+Economic Guide To Picking A College Major”</a>.</p>
+<div class="float">
+<img src="teacherclass.jpg"
+alt="A University of Scranton biology class, held in the Loyola Science Center." />
+<div class="figcaption"><em>A University of Scranton biology class, held
+in the Loyola Science Center.</em></div>
+</div>
+<p><br> To download this package</p>
+<ol style="list-style-type: decimal">
+<li>Click on the “Package” tab on the bottom right in RStudio.<br />
+</li>
+<li>Click on “Install” which is right below this tab.<br />
+</li>
+<li>In “Packages”, type in “fivethirtyeight” and click on install.</li>
+<li>Once the package is installed, type “library(fivethirtyeight)” into
+the console to load the package.</li>
+</ol>
+<p>If done correctly, you can use the dataset
+<code>college_all_ages</code> we’ll be using for sample questions. In
+particular, you should get the first few rows of the dataset if you type
+in</p>
+<pre class="r"><code>head(college_all_ages)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   major_code major         major_category  total employed employed_fulltime_ye…¹
+##        &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;           &lt;int&gt;    &lt;int&gt;                  &lt;int&gt;
+## 1       1100 General Agri… Agriculture &amp;… 128148    90245                  74078
+## 2       1101 Agriculture … Agriculture &amp;…  95326    76865                  64240
+## 3       1102 Agricultural… Agriculture &amp;…  33955    26321                  22810
+## 4       1103 Animal Scien… Agriculture &amp;… 103549    81177                  64937
+## 5       1104 Food Science  Agriculture &amp;…  24280    17281                  12722
+## 6       1105 Plant Scienc… Agriculture &amp;…  79409    63043                  51077
+## # ℹ abbreviated name: ¹​employed_fulltime_yearround
+## # ℹ 5 more variables: unemployed &lt;int&gt;, unemployment_rate &lt;dbl&gt;, p25th &lt;dbl&gt;,
+## #   median &lt;dbl&gt;, p75th &lt;dbl&gt;</code></pre>
+<p>To get a gist of what is in this dataset, type
+<code>?college_all_ages</code> into the console to get a description of
+the dataset and the relevant variables.</p>
+<p>For the contest, you will be given questions related to a single
+dataset. Depending on the difficulty of the question, you will be given
+nudges in the right direction, along with relevant functions that you
+might use to solve the question.</p>
+<p>For this sample dataset, the website 538 was trying to figure out a
+type of ranking for majors based on income.</p>
+<p><strong>Disclaimer</strong>: We’re not making any claims here about
+what your major should be! There’s much more to a job than just
+income.</p>
+</div>
+<div id="sample-questions" class="section level1">
+<h1>Sample Questions</h1>
+<p>Here is a list of sample questions which are similar in spirit to the
+types of questions you might see for the actual competition. Of course,
+there are multiple ways to solve any of these questions, but we give one
+such set of solutions at the end of this page. Perhaps a good way to
+approach these questions are to peek at the solutions for the first few
+questions, and then try solving the rest yourself.</p>
+<p><strong>Note 1</strong>: for the actual competition, it will be
+possible to solve all problems using the functions presented in this
+page and the R fundamentals page [LINK]. Both pages will be available to
+you during the competition.</p>
+<p><strong>Note 2</strong>: For all questions, You may assume that we
+don’t have any students majoring in more than one topic (i.e., no double
+majors).</p>
+<p><br></p>
+<p><font size="4"> <strong>(1)</strong> How many different majors are
+there? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(2)</strong> How many students are
+represented in the dataset? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(3)</strong> On average, how many students
+are there in a major? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(4)</strong> How many neuroscience majors are
+there? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(5)</strong> What is the unemployment rate
+for the entire dataset? (Careful: you shouldn’t just take an average of
+unemployment rates for majors!) </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(6)</strong> What major has the lowest
+unemployment rate? The highest? What are the unemployment rates of these
+professions? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(7)</strong> Is there a relation between the
+unemployment rate and median earnings for a major? Justify using a
+scatterplot and correlation coefficient. </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(8)</strong> What major has the most
+“scrunched” income distribution, meaning the smallest difference between
+the 25th and 75th percentile of earnings? Which major is the least
+scrunched (most spread out)? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(9)</strong> What is the average unemployment
+rate of majors containing the word “Engineering”? What about “Science”?
+What about “Management”? </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(10)</strong> Make a bar graph showing the
+employment rates for each of these three types of major. </font></p>
+<p><br></p>
+<p><font size="4"> <strong>(11)</strong> Create an estimate for the
+total amount of earnings generated from all students represented in the
+entire dataset. </font></p>
+<p><br> <br> <br></p>
+</div>
+<div id="solutions" class="section level1">
+<h1>Solutions</h1>
+<p><br></p>
+<p><font size="4"> <strong>(1)</strong> How many different majors are
+there? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: We could use the <code>major</code> or
+<code>major_code</code> variable to find that the number of different
+majors is</p>
+<pre class="r"><code>length(unique(college_all_ages$major))</code></pre>
+<pre><code>## [1] 173</code></pre>
+<p>This code uses the <code>unique</code> function, which finds the
+total number of different entries in a variable, and <code>length</code>
+which finds how long a vector is. For our question, we can also note how
+the dataset is arranged, with each row representing a different major.
+If it’s indeed the case that rows aren’t repeated (not a bad
+assumption), then we could simply look at the number of rows in dataset,
+which is given in the documentation, but can also be found in the first
+number in the expression which gives the <em>dimensions</em> of the
+dataset:</p>
+<pre class="r"><code>dim(college_all_ages)</code></pre>
+<pre><code>## [1] 173  11</code></pre>
+<p><br></p>
+<p><font size="4"> <strong>(2)</strong> How many students are
+represented in the dataset? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: We find in the documentation, by typing
+<code>?college\_all\_ages</code>, that the dataset has variables
+<code>total</code> for total students in each major. The total number of
+students (assuming no double majors) is then given by</p>
+<pre class="r"><code>sum(college_all_ages$total)</code></pre>
+<pre><code>## [1] 39834398</code></pre>
+<p><br></p>
+<p><font size="4"> <strong>(3)</strong> On average, how many students
+are there in a major? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: We can divide the total number of students
+by the total number of majors to get an average of students per major.
+Let’s define relevant variables to get us there:</p>
+<pre class="r"><code>A = sum(college_all_ages$total)
+B = length(unique(college_all_ages$major))
+
+A/B</code></pre>
+<pre><code>## [1] 230256.6</code></pre>
+<p><br></p>
+<p><font size="4"> <strong>(4)</strong> How many neuroscience majors are
+there? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: This boils down to finding which row in
+the dataset corresponds to neuroscience majors. Yes, in this case you
+can type in <code>View(college\_all\_ages)</code> and scroll down until
+you find the right row.</p>
+<p>But this really isn’t the way to go. What if your dataset has
+billions of rows? This isn’t far-fetched. Plenty of companies deal with
+datasets having billions, and even trillions of rows to sort through.
+Visually inspecting the entire dataset in this case is basically
+impossible.</p>
+<p>The more sound way to find the correct row is to use the
+<code>which</code> function.</p>
+<pre class="r"><code>ind = which(college_all_ages$major == &#39;Neuroscience&#39;)
+
+ind</code></pre>
+<pre><code>## [1] 89</code></pre>
+<pre class="r"><code>college_all_ages$major[ind]</code></pre>
+<pre><code>## [1] &quot;Neuroscience&quot;</code></pre>
+<p>So row 89 is what we’re looking for. Since <code>total</code> gives
+total people with a major, we simply type</p>
+<pre class="r"><code>college_all_ages$total[ind]</code></pre>
+<pre><code>## [1] 13676</code></pre>
+<p><br></p>
+<p><font size="4"> <strong>(5)</strong> What is the unemployment rate
+for the entire dataset? (Careful: you shouldn’t just take an average of
+unemployment rates for majors!) </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: To explain why we can’t simply take an
+average of unemployment rates, consider a group of 100 people, with a
+person holding an orange. What’s the average number of oranges that a
+person holds? This is found by taking the total number of oranges
+divided by the total number of people, which gives 1/100.</p>
+<p>Now imagine we form two groups. One group contains only the person
+holding the orange, and the other contains the other 99 people. If we
+compute average oranges for these two groups, we get 1 orange (for the
+single person group) and 0 oranges (for the rest). It would be a mistake
+to say the average number of oranges is the average of the two groups,
+which is (1+0)/2 = 1/2.</p>
+<p>In short, we need to be careful that different majors have different
+total numbers of students. So what we should do is sum all unemployed
+people, across all majors, and then divide by rhw total number of
+unemployed and employed.</p>
+<pre class="r"><code>emp = sum(college_all_ages$employed)
+unemp = sum(college_all_ages$unemployed)
+
+unemp/(emp+unemp)</code></pre>
+<pre><code>## [1] 0.05529137</code></pre>
+<p>Note that we need to be careful about total population! If in the
+denominator we used <code>sum(college_all_ages$total)</code>, we would
+get a different answer. Why do you think that’s the case?</p>
+<p><br></p>
+<p><font size="4"> <strong>(6)</strong> What major has the lowest
+unemployment rate? The highest? What are the unemployment rates of these
+professions? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: We can find the row number of the major
+with the highest unemployment rate using the <code>which.max</code>
+function applied to the variable <code>unemployment\_rate</code></p>
+<pre class="r"><code>ind = which.max(college_all_ages$unemployment_rate)
+ind</code></pre>
+<pre><code>## [1] 147</code></pre>
+<p>This, of course, doesn’t give the major (have you ever heard of a
+“147” major?). You have to plug this index back into the variable to get
+the name of the major</p>
+<pre class="r"><code>college_all_ages$major[ind]</code></pre>
+<pre><code>## [1] &quot;Miscellaneous Fine Arts&quot;</code></pre>
+<p>We can find the actual unemployment rate using either the
+<code>max</code> function</p>
+<pre class="r"><code>max(college_all_ages$unemployment_rate)</code></pre>
+<pre><code>## [1] 0.1561475</code></pre>
+<p>or by using the index which we know is associated with the highest
+unemployment</p>
+<pre class="r"><code>college_all_ages$unemployment_rate[ind]</code></pre>
+<pre><code>## [1] 0.1561475</code></pre>
+<p>We can do the same thing to fine the lowest unemployment, except now
+we use <code>which.min</code> and <code>min</code>:</p>
+<pre class="r"><code>ind = which.min(college_all_ages$unemployment_rate)
+college_all_ages$major[ind]</code></pre>
+<pre><code>## [1] &quot;Educational Administration And Supervision&quot;</code></pre>
+<pre class="r"><code>min(college_all_ages$unemployment_rate)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>Wow, that’s a pretty good unemployment rate! Given the major, what do
+you think might explain such a rate?</p>
+<p>If we’re being careful, we’d actually notice that there are two
+majors that have a zero unemployment rate. We can find this by
+typing</p>
+<pre class="r"><code>inds = which(college_all_ages$unemployment_rate == 0)
+college_all_ages$major[inds]</code></pre>
+<pre><code>## [1] &quot;Educational Administration And Supervision&quot;
+## [2] &quot;Geological And Geophysical Engineering&quot;</code></pre>
+<p>The subtle point here is that <code>which.min</code> only gives the
+first index in which the minimum occurs. That’s great if you only need
+one example of a minimum, but in other cases you might want to find all
+such cases.</p>
+<p><br></p>
+<p><font size="4"> <strong>(7)</strong> Is there a relation between the
+unemployment rate and median earnings for a major? Justify using a
+scatterplot and correlation coefficient. </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: There are variables for both
+<code>median</code> and <code>unemployment_rate</code>. A scatterplot
+between them can be found with</p>
+<pre class="r"><code>plot(college_all_ages$unemployment_rate,college_all_ages$median,xlab=&quot;Unemployment rate&quot;,ylab=&quot;Median Earnings (in dollars)&quot;)</code></pre>
+<p><img src="sampledataset2024_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<br></p>
+<p>Note that we weren’t lazy here and labeled each of the axes. This is
+always a good idea–your audience wants it to be clear what you’re
+plotting, and doesn’t really care about how the data is stored in
+whatever file you’re drawing from.</p>
+<p>There seems to be inverse relation between the two variables (so the
+higher the unemployment, the lower the earnings). But it looks to be a
+pretty weak relation. We can confirm this using the <em>correlation
+coefficient</em> <span class="math inline">\(\rho\)</span>. We won’t go
+through details of what this function does, but the main idea is that it
+is a measure between -1 and 1 that gives how well the data would be
+approximated with a line. The absolute value <span
+class="math inline">\(|\rho|\)</span> of the correlation coefficient
+gives the strength of the fit, and the sign tells you whether the
+relation is direct (<span class="math inline">\(\rho &gt; 0\)</span>) or
+inverse (<span class="math inline">\(\rho &lt;0\)</span>). In our case,
+we have</p>
+<pre class="r"><code>cor(college_all_ages$unemployment_rate,college_all_ages$median )</code></pre>
+<pre><code>## [1] -0.3019457</code></pre>
+<p>Not too surprising. The negative sign tells us we have an inverse
+correlation, and a magnitude of about .3 tells us that the relation is
+pretty weak.</p>
+<p><br></p>
+<p><font size="4"> <strong>(8)</strong> What major has the most
+“scrunched” income distribution, meaning the smallest difference between
+the 25th and 75th percentile of earnings? Which major is the least
+scrunched (most spread out)? </font></p>
+<p><br></p>
+<p><strong>Solution</strong>:The difference between the 25th and 75th
+percentiles, given by <code>p25th</code> and <code>p75th</code>, is a
+crude approximation of the <em>variance</em> of a dataset, which is a
+widely used measure for how spread out the data is.</p>
+<p>Let’s define a variable which computes the scrunch over all majors.
+Then we can find the index for the maximum and the corresponding major,
+similar to question (1).</p>
+<pre class="r"><code>scrunch = college_all_ages$p75th- college_all_ages$p25th 
+i = which.max(scrunch)
+college_all_ages$major[i]</code></pre>
+<pre><code>## [1] &quot;Petroleum Engineering&quot;</code></pre>
+<p>The major with the least scrunch uses min instead of max:</p>
+<pre class="r"><code>i = which.min(scrunch)
+college_all_ages$major[i]</code></pre>
+<pre><code>## [1] &quot;School Student Counseling&quot;</code></pre>
+<p><em>Note</em>: It might make more sense to think of a percent change
+in income rather than just the change itself. How might you devise a
+formula with this in mind?</p>
+<p><br></p>
+<p><font size="4"> <strong>(9)</strong> What is the average unemployment
+rate of majors containing the word “Engineering”? What about “Science”?
+What about “Management”? </font></p>
+<p><br></p>
+<p>This one is quite the challenge! While it is possible to solve this
+without importing any packages using the <code>grep</code> and
+<code>mapply</code> function (give it a try if you’re feeling
+ambitious!), life is much easier if we download the very helpful
+<code>stringr</code> package for dealing with text data. Here we find
+the indices in which “Engineering” appears, and then list these
+majors.</p>
+<pre class="r"><code>library(&#39;stringr&#39;)
+
+inds = str_detect(college_all_ages$major, &#39;Engineering&#39;)
+college_all_ages$major[inds]</code></pre>
+<pre><code>##  [1] &quot;General Engineering&quot;                        
+##  [2] &quot;Aerospace Engineering&quot;                      
+##  [3] &quot;Biological Engineering&quot;                     
+##  [4] &quot;Architectural Engineering&quot;                  
+##  [5] &quot;Biomedical Engineering&quot;                     
+##  [6] &quot;Chemical Engineering&quot;                       
+##  [7] &quot;Civil Engineering&quot;                          
+##  [8] &quot;Computer Engineering&quot;                       
+##  [9] &quot;Electrical Engineering&quot;                     
+## [10] &quot;Engineering Mechanics Physics And Science&quot;  
+## [11] &quot;Environmental Engineering&quot;                  
+## [12] &quot;Geological And Geophysical Engineering&quot;     
+## [13] &quot;Industrial And Manufacturing Engineering&quot;   
+## [14] &quot;Materials Engineering And Materials Science&quot;
+## [15] &quot;Mechanical Engineering&quot;                     
+## [16] &quot;Metallurgical Engineering&quot;                  
+## [17] &quot;Mining And Mineral Engineering&quot;             
+## [18] &quot;Naval Architecture And Marine Engineering&quot;  
+## [19] &quot;Nuclear Engineering&quot;                        
+## [20] &quot;Petroleum Engineering&quot;                      
+## [21] &quot;Miscellaneous Engineering&quot;                  
+## [22] &quot;Engineering Technologies&quot;                   
+## [23] &quot;Engineering And Industrial Management&quot;      
+## [24] &quot;Electrical Engineering Technology&quot;          
+## [25] &quot;Mechanical Engineering Related Technologies&quot;
+## [26] &quot;Miscellaneous Engineering Technologies&quot;</code></pre>
+<p>Now we can restrict our entire dataset to only contain majors related
+to engineering.</p>
+<pre class="r"><code>library(&#39;stringr&#39;)
+
+engdata = college_all_ages[inds,]
+
+engunemp = mean(engdata$unemployment_rate)
+engunemp</code></pre>
+<pre><code>## [1] 0.05038847</code></pre>
+<p>Yes, one may object that the average income should be weighted with
+respect to how many people are in that major. If that’s the case, how
+would we compute the mean?</p>
+<p>This method, of course, can be similarly used to compute majors
+containing “Science” and “Management”</p>
+<pre class="r"><code>library(&#39;stringr&#39;)
+
+inds = str_detect(college_all_ages$major, &#39;Science&#39;)
+scidata = college_all_ages[inds,]
+sciunemp = mean(scidata$unemployment_rate)
+
+inds = str_detect(college_all_ages$major, &#39;Management&#39;)
+managedata = college_all_ages[inds,]
+manageunemp = mean(managedata$unemployment_rate)
+
+sciunemp</code></pre>
+<pre><code>## [1] 0.05125521</code></pre>
+<pre class="r"><code>manageunemp</code></pre>
+<pre><code>## [1] 0.05346486</code></pre>
+<p>Pretty close unemployment rates, it appears. Take a look at other
+majors and see if they also have similar rates.</p>
+<p><br></p>
+<p><font size="4"> <strong>(10)</strong> Make a bar graph showing the
+employment rates for each of these three types of major. </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: Here we use the variables from the
+previous problem, and labels the bars appropriately using the
+<code>names.arg</code> function.</p>
+<pre class="r"><code>library(&#39;stringr&#39;)
+
+barplot(c(engunemp, sciunemp, manageunemp), 
+        names.arg = c(&quot;Engineering&quot;, &quot;Science&quot;, &quot;Management&quot;),
+        ylab = &quot;Unemployment Rate&quot;)</code></pre>
+<p><img src="sampledataset2024_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><font size="4"> <strong>(11)</strong>: Create an estimate for the
+total amount of earnings generated from all students represented in the
+entire dataset. </font></p>
+<p><br></p>
+<p><strong>Solution</strong>: We’ll let you figure this one out
+yourself! Careful-you’ll need to consider variables like the
+unemployment rate as well as variables related to income.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

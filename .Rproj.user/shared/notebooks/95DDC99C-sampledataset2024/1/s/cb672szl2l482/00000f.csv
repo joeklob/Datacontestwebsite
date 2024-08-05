@@ -1,0 +1,8 @@
+"0","emp = sum(college_all_ages$employed)"
+"0","unemp = sum(college_all_ages$unemployed)"
+"0",""
+"0","unemp/(emp+unemp)"
+"1","[1]"
+"1"," 0.05529137"
+"1","
+"

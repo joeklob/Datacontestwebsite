@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>R fundamentals</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Science Day at The University of Scranton</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="datacomptutorial.html">2024 Schedule</a>
+</li>
+<li>
+  <a href="newlab3.html">Contest Details</a>
+</li>
+<li>
+  <a href="newlab4.html">R fundamentals</a>
+</li>
+<li>
+  <a href="sampledataset2024.html">Sample dataset and questions</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">R fundamentals</h1>
+
+</div>
+
+
+<p>This page gives a lightning quick overview of how R works.</p>
+<div id="help" class="section level1">
+<h1>Help!</h1>
+<p>A fundamental part of coding is getting stuck. Thankfully, there are
+plenty of free resources for figuring out the basics of R.</p>
+<ol style="list-style-type: decimal">
+<li><p>Free online textbooks. One of the most popular is <a
+href="https://r4ds.hadley.nz/">R for Data Science</a> by Grolemund and
+Wickham. This gives an introduction to transforming datasets and
+visualizing data.</p></li>
+<li><p>A version of the notes used in The University of Scranton’s DS
+201 “Introduction to Data Science” class can be found <a
+href="https://scrantondatanotes.netlify.app/">here</a>.</p></li>
+<li><p>Like any other established programming language, R has
+<em>documentation</em>. The main page for R’s documentation is <a
+href="https://www.rdocumentation.org/">here</a>, but typically a google
+search will direct you to the right place. For instance, testing out “r
+sort” has as its first hit the documentation for sorting a
+list.</p></li>
+<li><p>Thousands of frustrated programmers have contributed to sites
+like Stack Exchange, where users post questions and answers to all sorts
+of problems. While documentation can be seen as more “official”, you
+might find that your questions are more often answered on Stack Exchange
+and other programming-centered forums.</p></li>
+</ol>
+<p>As an undergrad, you can (…and should!) devote years to learning the
+intricacies of languages like R. After you figure out the basics, you
+can start digging into the really interesting stuff, like modeling,
+image processing, machine learning, and other relevant topics in STEM.
+For now though, let’s go through the basics:</p>
+<div id="r-is-a-calculator" class="section level2">
+<h2>R is a calculator</h2>
+<p>Saying that R is a calculator is like saying a flamethrower is a
+mosquito repellent. However, at its core, R performs basic arithmetic.
+The operators for addition, subtraction, multiplication, and division
+are given by</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(+\)</span> for addition, so <strong>1+1
+= 2</strong>.</li>
+<li><span class="math inline">\(-\)</span> for subtraction, so
+<strong>1-1 = 0</strong>.</li>
+<li><span class="math inline">\(*\)</span> for multiplication, so __2*3
+= 6__.</li>
+<li><span class="math inline">\(*\)</span> for division, so <strong>6/2
+= 3</strong>.</li>
+<li><span class="math inline">\(\hat{}\)</span> for exponentiation, so
+<strong>2^3 = 8</strong>.</li>
+</ol>
+<p>The PEMDAS order of operations applies, although if you’re in doubt,
+adding additional parentheses is the way to go.</p>
+<blockquote>
+<p><strong>Q:</strong> Twitter sometimes generates controversy
+(actually, when does it <em>not</em>?) by asking people to evaluate
+6/2*(1+2). What does R give? What different responses do you think are
+often provided? By using parentheses, how should the expression be
+written to remove any ambiguity? Also, what happens when you type in
+6/2(1+2)?</p>
+</blockquote>
+<p>Typing into the console at the bottom of your screen, the response
+from R is:</p>
+<pre class="r"><code>6/2*(1+2)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<p>We can expect that some people are thinking that the expression
+should be evaluated as</p>
+<pre class="r"><code>(6/2)*(1+2)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<p>There’s likely other people who believe that the expression should
+instead be</p>
+<pre class="r"><code>6/(2*(1+2))</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>The important point here is that parentheses clear any ambiguity
+regarding PEMDAS. When in doubt, err on the side of more clarity.</p>
+<p>R also can handle vectors, which are simply lists of numbers. To work
+with the vector <span class="math inline">\((2,3,5)\)</span>, for
+instance, let’s define <span class="math inline">\(V\)</span> as</p>
+<pre class="r"><code>V = c(2,3,5)</code></pre>
+<p>It appears as if nothing has happened, but in fact we have stored a
+new variable <span class="math inline">\(V\)</span> which can be called
+on at any time. Simply type into the console</p>
+<pre class="r"><code>V</code></pre>
+<pre><code>## [1] 2 3 5</code></pre>
+<p>Now we’re at the point where we might want to run several lines of
+code at once. This can be done through opening up an <em>R script</em>.
+To do so at the top left of your RStudio screen, click on File–&gt; New
+File –&gt; R Script. Doing so will give you a pane at the top of the
+screen. In the pane, type in the following, highlight both lines, and
+click “Run” at the top of the pane:</p>
+<pre class="r"><code>W = c(4,3,9)
+print(W)</code></pre>
+<pre><code>## [1] 4 3 9</code></pre>
+<p>Note that the first line defines a new variable <span
+class="math inline">\(W\)</span>, and the second line prints out the
+value of the variable. Now that you’ve defined <span
+class="math inline">\(V\)</span> and <span
+class="math inline">\(W\)</span>, we can perform operations with the two
+variables. Tinker around and see what happens when you perform the
+following</p>
+<ul>
+<li><span class="math inline">\(V + W\)</span></li>
+<li><span class="math inline">\(V*W\)</span></li>
+<li><span class="math inline">\(2*V - 3*W\)</span></li>
+</ul>
+<p>For the first expression, we have</p>
+<pre class="r"><code>V + W</code></pre>
+<pre><code>## [1]  6  6 14</code></pre>
+<p>So R is adding the first element of V to the first element of W, the
+second element of V to the second element of W, and so on.</p>
+<p>When you have a list of numbers, you can also sort them</p>
+<pre class="r"><code>sort(V)</code></pre>
+<pre><code>## [1] 2 3 5</code></pre>
+<p>If you need to go from largest to smallest, you can use the
+“decreasing” argument:</p>
+<pre class="r"><code>sort(W, decreasing = TRUE)</code></pre>
+<pre><code>## [1] 9 4 3</code></pre>
+</div>
+<div id="r-makes-handling-datasets-easy" class="section level2">
+<h2>R makes handling datasets easy</h2>
+<p>R is used heavily by the statistics community because of its with in
+handling datasets. To see this, let’s work with a built in dataset
+provided by R. Type in</p>
+<pre class="r"><code>mtcars</code></pre>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<p>Here you get a list of car names and their corresponding performance
+features. You can see the first few lines of the dataset by typing
+in</p>
+<pre class="r"><code>head(mtcars)</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>The beauty of R is that you can perform common calculations on this
+dataset with ease.</p>
+<p>First off, if we want to isolate a single variable, we use the
+<em>accessor</em> symbol “$” (…yes, it’s just a dollar sign). So, for
+instance, if we want a listing of mpg’s for cars, we type</p>
+<pre class="r"><code>mtcars$mpg</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4</code></pre>
+<p>This gives a vector with entries of mpg for each car. From here,
+we’re off to the races (especially with this dataset), since we can
+figure out a host of statistics. We might want to find the maximum and
+minimum mpg. This can be done with</p>
+<pre class="r"><code>max(mtcars$mpg)</code></pre>
+<pre><code>## [1] 33.9</code></pre>
+<pre class="r"><code>min(mtcars$mpg)</code></pre>
+<pre><code>## [1] 10.4</code></pre>
+<p>We can do the same with other quantities:</p>
+<pre class="r"><code>#mean (or average)
+mean(mtcars$mpg)</code></pre>
+<pre><code>## [1] 20.09062</code></pre>
+<pre class="r"><code>#standard deviation (a measure of spread)
+sd(mtcars$mpg)</code></pre>
+<pre><code>## [1] 6.026948</code></pre>
+<pre class="r"><code>#median (half the entries above this value, half below)
+median(mtcars$mpg)</code></pre>
+<pre><code>## [1] 19.2</code></pre>
+<pre class="r"><code>#range (maximum value minus minimum value)
+range(mtcars$mpg)</code></pre>
+<pre><code>## [1] 10.4 33.9</code></pre>
+<p>Note the hashtags appearing before the computations. This is called
+<strong>commenting</strong>. Comments are not read by R, but are used
+for guides to remind yourself what the code is doing. In R, all comments
+must begin with a “#” symbol.</p>
+<p>Sometimes we will need to define new variables which are combinations
+of existing variables. For instance, one might be interested in creating
+a new variable called <strong>horsepower efficiency</strong> (Note: the
+author is a mathematician, not an auto mechanic. I have no clue if this
+is a real thing…), which we will define by miles per gallon divided by
+horsepower, or</p>
+<p><span class="math display">\[ \hbox{ HPE} =
+\mathrm{MPG}/\mathrm{HP}.\]</span> Here <span
+class="math inline">\(MPG\)</span> is the miles per gallon of a car, and
+<span class="math inline">\(HP\)</span> is its horsepower. In R, we can
+calculate the HPE by</p>
+<pre class="r"><code>hpeffic = mtcars$mpg/mtcars$hp </code></pre>
+<p>Now we can start answering questions about HPE</p>
+<blockquote>
+<p><strong>Q:</strong> Which cars have HPE greater than .1?</p>
+</blockquote>
+<p>This is done by using the <TT>which</TT> function. This gives indices
+of a list which satisfy a certain condition.</p>
+<pre class="r"><code>ind = which(hpeffic &gt; .1)
+
+rownames(mtcars)[ind]</code></pre>
+<pre><code>##  [1] &quot;Mazda RX4&quot;         &quot;Mazda RX4 Wag&quot;     &quot;Datsun 710&quot;       
+##  [4] &quot;Hornet 4 Drive&quot;    &quot;Hornet Sportabout&quot; &quot;Valiant&quot;          
+##  [7] &quot;Merc 240D&quot;         &quot;Merc 230&quot;          &quot;Merc 280&quot;         
+## [10] &quot;Merc 280C&quot;         &quot;Fiat 128&quot;          &quot;Honda Civic&quot;      
+## [13] &quot;Toyota Corolla&quot;    &quot;Toyota Corona&quot;     &quot;Dodge Challenger&quot; 
+## [16] &quot;AMC Javelin&quot;       &quot;Pontiac Firebird&quot;  &quot;Fiat X1-9&quot;        
+## [19] &quot;Porsche 914-2&quot;     &quot;Lotus Europa&quot;      &quot;Ferrari Dino&quot;     
+## [22] &quot;Volvo 142E&quot;</code></pre>
+<blockquote>
+<p><strong>Q:</strong> Which car(s) have the smallest HPE? What is this
+smallest value?</p>
+</blockquote>
+<pre class="r"><code>rownames(mtcars)[which.min(hpeffic)]</code></pre>
+<pre><code>## [1] &quot;Maserati Bora&quot;</code></pre>
+<pre class="r"><code>min(hpeffic)</code></pre>
+<pre><code>## [1] 0.04477612</code></pre>
+</div>
+<div id="r-has-many-plotting-capabilities" class="section level2">
+<h2>R has (many) plotting capabilities</h2>
+<p>R has built in features for producing to make nice looking visuals.
+Let’s take a look at a <strong>scatterplot</strong> which plots two
+features on a plane. We’ll do a scatter plot comparing mpg and
+horsepower.</p>
+<pre class="r"><code>x = mtcars$mpg
+
+y = mtcars$hp
+
+plot(x,y, xlab = &#39;Miles per gallon&#39;, ylab = &#39;Horsepower&#39;)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<blockquote>
+<p><strong>Q:</strong> What happens if we don’t include the text
+<TT>xlab</TT> and <TT>ylab</TT> in the arguments for <TT>plot</TT>?</p>
+</blockquote>
+<p>These arguments are not necessary, but they are nice to include if
+you’d like to make it clear to either yourself or someone else reading
+your code what your variables are.</p>
+<p>Now let’s do the another plot, comparing mpg with gears</p>
+<pre class="r"><code>x = mtcars$mpg
+
+y = mtcars$gear
+
+plot(x,y, xlab = &#39;Miles per gallon&#39;, ylab = &#39;Gears&#39;)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>The variable gears takes <strong>discrete</strong> values
+(e.g. 2,3,4) whereas mpg is a <strong>continuous</strong> variable,
+taking values like 13.5, 18.4, etc. In a case like this, it’s more
+informative to use a <strong>box plot</strong>.</p>
+<pre class="r"><code>boxplot(mpg~gear, data = mtcars)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<blockquote>
+<p><strong>Q:</strong> What do each of the features of this box plot
+represent? (A quick google search can answer this)</p>
+</blockquote>
+<p>When you just want to look at a single continuous variable, use a
+<strong>histogram</strong>. This will <strong>bin</strong> values within
+a particular range. R does a pretty decent job deciding what the number
+of bins should be, most of the time, but sometimes you need to change
+the number of bins yourself.</p>
+<pre class="r"><code>hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = &quot;Histogram of horsepower efficiency&quot;)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Here’s too many bins:</p>
+<pre class="r"><code>hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = &quot;Histogram of horsepower efficiency&quot;, breaks = 50)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>And too few bins:</p>
+<pre class="r"><code>hpeffic = mtcars$mpg/mtcars$hp
+
+hist(hpeffic, main = &quot;Histogram of horsepower efficiency&quot;, breaks = 3)</code></pre>
+<p><img src="rfundamentals_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
