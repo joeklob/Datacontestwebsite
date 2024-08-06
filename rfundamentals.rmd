@@ -2,7 +2,19 @@
 title: "R fundamentals"
 ---
 
+![_R code for summing the first 100 integers. What should the output be?_](whatrlookslike.png){width=100%}
+
+
+
+<br>
+
+<br>
+
 This page gives a lightning quick overview of how R works.  
+
+
+<br>
+
 
 # Help!
 
@@ -26,7 +38,7 @@ Saying that R is a calculator is like saying a flamethrower is a mosquito repell
 
 1) $+$ for addition, so __1+1 = 2__.
 2)  $-$ for subtraction,  so __1-1 = 0__.
-3) $*$ for multiplication, so __2*3 = 6__.
+3) $*$ for multiplication, so __2\*3 = 6__.
 4)  $*$ for division, so __6/2 = 3__.
 5)  $\hat{}$ for exponentiation, so __2^3 = 8__.
 
