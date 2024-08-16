@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/datacontestwebsite/Datacontestwebsite/datacomptutorial.rmd",
     "project_path": "datacomptutorial.rmd",
     "type": "r_markdown",
-    "hash": "4105435792",
+    "hash": "3965715435",
     "contents": "",
     "dirty": false,
     "created": 1708525434761.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "25,115",
-        "scrollLine": "17"
+        "cursorPosition": "25,51",
+        "scrollLine": "21"
     },
     "folds": "",
-    "lastKnownWriteTime": 1723837121,
+    "lastKnownWriteTime": 1723837609,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1723837121117,
+    "last_content_update": 1723837609557,
     "read_only": false,
     "read_only_alternatives": []
 }
