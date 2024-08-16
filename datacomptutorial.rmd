@@ -10,15 +10,20 @@ title: "Schedule"
 <br>
 
 
-- 8:00-9:00 Registration and light fare
+Schedule for Data Science Day on __Thursday, November 21__ at Room 407 in The DeNaples Center.
 
-- 9-10:00 Introduction and tutorial by Joe Klobusicky - Assistant Professor of Mathematics
+- 8:30-9:30 Registration and breakfast.  Please try getting here closer to 8:30 so we can get everybody set up with a Chromebook for the competition.
 
-- 10:00-11:30 The 2024 Data Science Competition
+- 9:30-10:30 Introduction and tutorial by Joe Klobusicky - Assistant Professor of Mathematics
 
-- 11:30-12:30 Lunch and keynote speaker Melinda Kleczynski: Postdoctoral scholar at the National Institute of Standards and Technology: Division of Applied and Computational Mathematics Division
+- 10:30-12:00 The 2024 Data Science Competition
 
-- 12:30-1:00 Results and closing remarks
+- 12:00-1:00 Lunch and keynote speaker Melinda Kleczynski: Postdoctoral scholar at the National Institute of Standards and Technology: Applied and Computational Mathematics Division
+
+- 1:00-1:30 Results and closing remarks
+
+
+Use link [here](https://docs.google.com/forms/d/e/1FAIpQLSdayehq6Zrs_R-JUzcu12rTA79QyGXVXKbk7CkyIgS2yYbISw/viewform)
   
   
 

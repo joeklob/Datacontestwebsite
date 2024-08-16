@@ -2,7 +2,7 @@
 title: "R fundamentals"
 ---
 
-![_R code for summing the first 100 integers. What should the output be?_](whatrlookslike.png){width=100%}
+![_R code for summing the first 100 integers. What should the output be? (note: we won't be requiring loops for the contest)_](whatrlookslike.png){width=100%}
 
 
 
