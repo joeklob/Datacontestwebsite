@@ -21,7 +21,7 @@ For the singles division, we are offering a prize of $200 for the winner of the 
 If you are interested in participating in Data Science Day, please fill out the __registration form__ [here](https://docs.google.com/forms/d/e/1FAIpQLSePKA5Sdi9VW9YopJlrZHWHJTgyDDIYBQLa3ruEtIApkNfFYw/viewform?usp=sf_link).
 
 
-
+If you have any questions about Data Science Day, please email the event coordinator, Joe Klobusicky, at joseph.klobusicky \<at\> scranton \<dot\> edu. 
 
 
 </center>
