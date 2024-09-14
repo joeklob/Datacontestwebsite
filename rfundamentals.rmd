@@ -10,7 +10,7 @@ title: "R fundamentals"
 
 <br>
 
-This page gives a lightning quick overview of how R works.  
+This page gives a lightning quick overview of how R works.  Of course we can't cover everything that R does here, but the material in this page and the [sample dataset page](https://scrantondatacontest.netlify.app/rfundamentals) will be sufficient to answer all of the questions in the data science competition.
 
 
 <br>
@@ -70,10 +70,10 @@ There's likely other people who believe that the expression should instead be
 The important point here is that parentheses clear any ambiguity regarding PEMDAS.  When in doubt, err on the side of more clarity.
 
 
-R also can handle vectors, which are simply lists of numbers.  To work with the vector $(2,3,5)$, for instance, let's define $V$ as
+R also can handle vectors, which are simply lists of numbers.  To work with the vector $(2,3,5, 8, 12)$, for instance, let's define $V$ as
 
 ```{r}
-V = c(2,3,5)
+V = c(2,3,5,8, 12)
 ```
 
 It appears as if nothing has happened, but in fact we have stored a new variable $V$ which can be called on at any time.  Simply type into the console
@@ -82,10 +82,24 @@ It appears as if nothing has happened, but in fact we have stored a new variable
 V
 ```
 
+If you would like to access a particular element in a vector, use brackets.  For instance, the second element of $V$ is 3, which we can access by simply typing 
+
+```{r}
+V[2]
+```
+
+If you'd like to output all vector elements, use a colon.  So if we'd like to return the 2nd through 4th elements of the vector, which is $(3,5,8)$, we would type
+
+```{r}
+V[2:4]
+```
+
+
+
 Now we're at the point where we might want to run several lines of code at once.  This can be done through opening up an _R script_.  To do so at the top left of your RStudio screen, click on File--> New File --> R Script.  Doing so will give you a pane at the top of the screen.  In the pane, type in the following, highlight both lines, and click "Run" at the top of the pane:
 
 ```{r}
-W = c(4,3,9)
+W = c(4,3,9, 2, 2)
 print(W)
 ```
 Note that the first line defines a new variable $W$, and the second line prints out the value of the variable.  Now that you've defined $V$ and $W$, we can perform operations with the two variables.  Tinker around and see what happens when you perform the following
@@ -171,7 +185,7 @@ Here $MPG$ is the miles per gallon of a car, and $HP$ is its horsepower. In R, w
 hpeffic = mtcars$mpg/mtcars$hp 
 ```
 
-Now we can start answering questions about HPE
+Now we can start answering questions about HPE.
 
 > __Q:__ Which cars have HPE greater than .1? 
 

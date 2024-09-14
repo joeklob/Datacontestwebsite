@@ -23,7 +23,7 @@ For a quick recap of the most important points below:
 
 - You need to register for Posit Cloud.  See instructions for how to do so below.
 - You do not need to bring a laptop for the competition.  One will be provided to you, from which you can access Posit Cloud and small list of website, which are listed below.
-- Competition questions will be based on the 2024 dataset, which can be downloaded in the [Sample dataset and questions](https://scrantondatacontest.netlify.app/sampledataset2024) page.  In this tab, there are also sample questions and solutions which are good practice for the types of questions you'll see in the actual competition.  
+- Competition questions will be based on the material discussed on this website.  Speficially, the [R fundamentals page](https://scrantondatacontest.netlify.app/rfundamentals) and [Sample dataset and questions](https://scrantondatacontest.netlify.app/sampledataset2024) page.  For the latter page, there are sample questions and solutions which are good practice for the types of questions you'll see in the actual competition.  
 
 
 
