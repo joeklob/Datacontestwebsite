@@ -10,7 +10,7 @@ title: "R fundamentals"
 
 <br>
 
-This page gives a lightning quick overview of how R works.  Of course we can't cover everything that R does here, but the material in this page and the [sample dataset page](https://scrantondatacontest.netlify.app/rfundamentals) will be sufficient to answer all of the questions in the data science competition.
+This page gives a lightning quick overview of how R works.  Of course we can't cover everything that R does here, but the material in this page and the [sample dataset page](https://scrantondatacontest.netlify.app/sampledataset2024) will be sufficient to answer all of the questions in the data science competition.
 
 
 <br>
@@ -24,7 +24,7 @@ A fundamental part of  coding is getting stuck. Thankfully, there are plenty of 
 
 2. A version of the notes used in The University of Scranton's DS 201 "Introduction to Data Science" class can be found [here](https://scrantondatanotes.netlify.app/).
 
-3. Like any other established programming language, R has _documentation_. The main page for R's documentation is [here](https://www.rdocumentation.org/), but typically a google search will direct you to the right place.  For instance, testing out "r sort" has as its first hit the documentation for sorting a list.
+3. Like any other established programming language, R has _documentation_. The main page for R's documentation is [here](https://www.r-project.org/other-docs.html), but typically a google search will direct you to the right place.  For instance, testing out "r sort" has as its first hit the documentation for sorting a list.
 
 4. Thousands of frustrated programmers have contributed to sites like Stack Exchange, where users post questions and answers to all sorts of problems.  While documentation can be seen as more "official", you might find that your questions are more often answered on Stack Exchange and other programming-centered forums. 
 

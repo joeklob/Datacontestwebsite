@@ -7,13 +7,13 @@ title: ""
 
  <font size="4">
 
-Welcome to the homepage for The University of Scranton's Data Science Day! The event will take place on Thursday, November 21 from 8:30-1:30 at DeNaples Hall 407D.
+Welcome to the homepage for The University of Scranton's Data Science Day! The event will take place on Thursday, November 21 from 8:30-1:30 at The DeNaples Center ballrom (407D).
 
 This year's schedule of events boasts:
 
 - A minitutorial on image visualization in R
 - A guest speaker from the National Institute of Standards and Technology
-- The inaugural Scranton Data Science Competition, with a Pairs Division for beginners and a Singles Division for the computationally ambitious
+- The inaugural Scranton Data Science Day Competition, with a Pairs Division for beginners and a Singles Division for the computationally ambitious
 - Plenty of food and data science swag for all who participate!  
 
 For the singles division, we are offering a prize of $200 for the winner of the competition, and a __scholarship for \$2500 to attend the University of Scranton__! We are also offering a prize of \$100 for the winning team of the doubles division, meant for beginners.  

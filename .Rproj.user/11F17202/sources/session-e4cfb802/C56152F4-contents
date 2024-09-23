@@ -21,9 +21,9 @@ For this contest, you will be working with the __R programming language__, a pow
 
 For a quick recap of the most important points below:
 
-- You need to register for Posit Cloud.  See instructions for how to do so below.
+- __To attend Data Science Day, you will need to sign up for a free account at Posit Cloud.  You can do so [here](https://posit.cloud/plans/free)__.  See below for more details.
 - You do not need to bring a laptop for the competition.  One will be provided to you, from which you can access Posit Cloud and small list of website, which are listed below.
-- Competition questions will be based on the material discussed on this website.  Speficially, the [R fundamentals page](https://scrantondatacontest.netlify.app/rfundamentals) and [Sample dataset and questions](https://scrantondatacontest.netlify.app/sampledataset2024) page.  For the latter page, there are sample questions and solutions which are good practice for the types of questions you'll see in the actual competition.  
+- Competition questions will be based on the material discussed on this website.  Speficially, the [R fundamentals page](https://scrantondatacontest.netlify.app/rfundamentals) and [Sample dataset and questions](https://scrantondatacontest.netlify.app/sampledataset2024) page.  For the latter page, there are sample questions and solutions which are good practice for the types of questions you'll see in the actual competition.  __You will be allowed to access this website (and only this website) for reference during the competition__.
 
 
 
@@ -35,9 +35,9 @@ For a quick recap of the most important points below:
 
 Let's head through the basics with some basic questions, 
 
-> __Q:__ But what if I don't know R? 
+> __Q:__ What if I don't know how to program R (or in any language)? 
 
-Not a problem! It's assumed that most participating in this competition won't have a clue what R is until reading this page.  
+Not a problem! It's assumed that most participating in this competition won't have a clue what R is until reading this page. The material convered in this website is sufficient for the competition.
 
 > __Q:__ Where do I start?
 
