@@ -10,7 +10,7 @@ title: "Schedule"
 <br>
 
 
-Schedule for Data Science Day on __Thursday, November 21__ at Room 407 in The DeNaples Center. 
+Schedule for Data Science Day on __Thursday, November 13__ at Room 407 in The DeNaples Center. 
 
 __Note__: Laptops are not required for the competition. Chromebooks will be provided for all attending.  
 
@@ -18,11 +18,11 @@ __Note__: Laptops are not required for the competition. Chromebooks will be prov
 
 - 9:30-10:30 __Introduction and tutorial__ by Joe Klobusicky (Assistant Professor of Mathematics at the University of Scranton).  
 
-- 10:30-12:00 __The 2024 Data Science Competition__. Students will work on Chromebooks to answer questions related to a dataset.  All questions can be answered using the techniques found in the tutorial and sample dataset on the event's website, and access to this website will be available during the competition.  For students in the doubles division, we will provide nudges in the right direction if you get stuck.  For those in the singles division, we will provide clarification on questions, but not advice on how to solve them.
+- 10:30-12:00 __The 2025 Data Science Competition__. Students will work on Chromebooks to answer questions related to a dataset.  All questions can be answered using the techniques found in the tutorial and sample dataset on the event's website, and access to this website will be available during the competition.  For students in the doubles division, we will provide nudges in the right direction if you get stuck.  For those in the singles division, we will provide clarification on questions, but not advice on how to solve them.
 
 __Note__: It is required to register for Posit cloud to participate in the data science competition! For details on doing so, please read the [Contest details page](https://scrantondatacontest.netlify.app/contestdetails)
 
-- 12:00-1:00 __Lunch and keynote speaker__ Melinda Kleczynski: Postdoctoral scholar at the NIST (National Institute of Standards and Technology): Applied and Computational Mathematics Division.
+- 12:00-1:00 __Lunch and keynote speaker__ Stephen Sorokanich: Quantum Fellow at Air Force Research Laboratory.
 
 - 1:00-1:30 __Results and closing remarks__.
 
@@ -39,12 +39,12 @@ __Note__: It is required to register for Posit cloud to participate in the data 
   
 __Parking Details__
 
-If you have registered, you will receive a parking pass via email a few days before the event.  You'll be parking in the __Ridge Row__ parking lot.  A map of the campus be downloaded below.  Not that Ridge Row is the C parking lot (near the bottom right of the map), and Denaples Hall, where the event is held, is labeled 38 and located near the map center. The event will be held in the Ballroom, Room 407 D, which can be accessed through the main set of stairs or the elevator located next to the stairs.
+If you have registered, you will receive a parking pass via email a few days before the event.  You'll be parking in the __Ridge Row__ parking lot.  A map of the campus be downloaded below.  Not that Ridge Row is the C parking lot (near the bottom right of the map), and DeNaples Hall, where the event is held, is labeled 38 and located near the map center. The event will be held in the Ballroom, Room 407 D, which can be accessed through the main set of stairs or the elevator located next to the stairs.
 
 
 [Campus parking map](https://www.scranton.edu/about/university-police/parking/campus-parking-map1.pdf)
 
-If you have registered but have not received a parking pass by Monday 11/18, please email joseph.klobusicky \<at\> scranton \<dot\> edu.
+If you have registered but have not received a parking pass by Monday Nov. 3, please email joseph.klobusicky \<at\> scranton \<dot\> edu.
 
 
 

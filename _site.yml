@@ -4,7 +4,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "2024 Schedule"
+    - text: "2025 Schedule"
       href: datacomptutorial.html
     - text: "Contest Details"
       href: contestdetails.html
