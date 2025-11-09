@@ -12,6 +12,8 @@ navbar:
       href: rfundamentals.html
     - text: "Sample dataset and questions"
       href: sampledataset2024.html
+    - text: ""
+      href: data2025.html
       
 output: 
   html_document:
